@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CurrentWeather } from '../current-weather';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class WeatherService {
     return this.current;
   }
 
-  localWeather(lat:string, lon:string){
+  localWeather(lat:number, lon:number){
     return this.http.get<any>(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=18d2f7cb2e60dde568d95c77154a81d8&units=imperial`).pipe(map((response: Response) => response.json()));
     }
 }
